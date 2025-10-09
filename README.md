@@ -2,6 +2,7 @@
 
 **Non-Gaussianity Evolution in Galaxy Velocity Dispersion: Bispectral Evidence from 2.8M SDSS Galaxies**
 
+📄 Preprint: https://doi.org/10.5281/zenodo.17304825
 ---
 
 ## 📊 Abstract
