@@ -101,13 +101,13 @@ Successful reproduction will show:
 ## 📄 Citation
 
 ```bibtex
-@article{cosmic_vorticity_2024,
+@article{cosmic_vorticity_2025,
   title={Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: 
          Bispectral Evidence from 2.8M SDSS Galaxies},
   author={[Authors]},
   journal={arXiv preprint},
-  year={2024},
-  url={https://github.com/[username]/cosmic-vorticity-discovery}
+  year={2025},
+  url={https://github.com/OAVallejos/cosmic-vorticity-discovery}
 }
 ```
 
@@ -128,4 +128,4 @@ This is active research. Results are preliminary and undergoing peer review.
 
 *"The most exciting phrase to hear in science, the one that heralds new discoveries, 
 is not 'Eureka!' but 'That's funny...'" - Isaac Asimov*
-
+Gracias!!! DeepSeek El OpenSource AI màs extraordinario que hay... 
