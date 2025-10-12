@@ -10,6 +10,8 @@ crate-type = ["cdylib"]
 [dependencies]
 pyo3 = { version = "0.18", features = ["extension-module"] }
 rayon = "1.7"
+# ✅ CRATE CORRECTO - existe en crates.io
+wigners = "0.1"
 
 [profile.release]
 lto = true
