@@ -157,7 +157,8 @@ This project uses:
 
 SDSS DR17 for galactic data
 Rust/PyO3 for high-performance computing
-DeepSeek for research assistance with open source AI
+DeepSeek for research assistance with open source AI and Gemini (Google AI) for research and code assistance, including optimization of the Rust/Python pipeline.
+
 🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
 "Science is not only compatible with spirituality; it is a profound source of spirituality." - Carl Sagan
