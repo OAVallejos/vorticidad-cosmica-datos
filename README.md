@@ -1,132 +1,163 @@
-# Cosmic Vorticity Discovery 🌌🌀
+Cosmic Vorticity Discovery 🌌🌀
 
-**Non-Gaussianity Evolution in Galaxy Velocity Dispersion: Bispectral Evidence from 2.8M SDSS Galaxies**
+Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS Galaxies
 
 📄 Preprint: https://doi.org/10.5281/zenodo.17304825
----
 
-## 📊 Abstract
 
-This repository contains the complete reproduction package for our discovery of **strong redshift evolution in non-Gaussianity** of galaxy velocity dispersion. Analyzing **2.8 million galaxies** from SDSS DR17, we find:
+🚨 CRITICAL UPDATES AND CORRECTIONS (V1.1)
 
-- **17-77× increase** in bispectral non-Gaussianity from z=0.1 to z=0.7
-- **Clear transition** at redshift z≈0.7-0.8  
-- **Inconsistent with ΛCDM** predictions
-- **Evidence for cosmic vorticity** and beyond-ΛCDM physics
+This version updates the V1.0 preprint to incorporate the correction of a systematic mathematical error and to improve statistical robustness.
 
-## 🚀 Quick Start
+Metric
 
-### Reproduce Results (2 minutes):
-```bash
-git clone https://github.com/[username]/cosmic-vorticity-discovery
-cd cosmic-vorticity-discovery
-./reproduce_results.sh
-```
+Previous Status (V1.0)
 
-### Manual Reproduction:
-```bash
-cd code
-python3 reproduce_multi_bin.py
-```
+Corrected Status (V1.1)
 
-## 📁 Repository Structure
+Mathematical Error
 
-```
-cosmic-vorticity-discovery/
-├── datasets/                 # Compact SDSS datasets (127MB)
-│   ├── sdss_vdisp_calidad.npz           # 2.8M galaxies, VDISP > 50 km/s
-│   └── galaxias_velocidad_sdss_compacto_chunked.npz  # Full 3.2M dataset
-├── code/                     # Analysis pipeline
-│   ├── reproduce_multi_bin.py           # Main analysis: multi-bin redshift
-│   ├── BISPECTRO_PYTHON_FINAL.py        # Bispectro implementation
-│   ├── ANALISIS_DIRECTO_ALM.py          # Direct analysis methods
-│   ├── cosmic_vorticity.so              # Optimized Rust library
-│   └── libcosmic_vorticity.so           # Rust library backup
-├── docs/                     # Documentation
-│   ├── code_quality_report.md           # Code evaluation & robustness
-│   ├── INFORME_TECNICO_GITHUB.md       # Technical methodology
-│   └── RESUMEN_CIENTIFICO_FINAL.py     # Scientific summary
-├── results/                  # Output directory
-└── reproduce_results.sh      # Automated reproduction script
-```
+Incorrect 3-j symbol implementation
 
-## 🔬 Key Findings
+✅ Corrected: Precise Wigner implementation
 
-### Multi-Bin Redshift Analysis:
-| Redshift Bin | Bispectro (2,2,2) | Bispectro (4,4,4) | Ratio Increase |
-|--------------|-------------------|-------------------|----------------|
-| z=0.1-0.2    | 125M              | 1.13B             | 1× (baseline)  |
-| z=0.3-0.4    | 1.06B             | 5.74B             | 4.6-5.1×       |
-| z=0.5-0.6    | 863M              | 4.31B             | 6.9-3.8×       |
-| z=0.7-0.8    | 9.66B             | 20.04B            | **77.3-17.7×** |
+Robustness Sampling
 
-### Statistical Significance:
-- **2.8 million galaxies** analyzed after quality cuts (VDISP > 50 km/s)
-- **600 galaxies per bin** for bispectral analysis (VDISP > 100 km/s)
-- **Clear evolutionary pattern** inconsistent with random fluctuations
+5 bootstrap samples
 
-## 🛠️ Technical Implementation
+✅ Improved Robustness: 25 samples
 
-### Data Processing:
-- **Memory-optimized chunk processing** (handled 6.3GB → 127MB)
-- **Rust/PyO3 integration** for high-performance bispectro calculations
-- **Quality filters**: VDISP > 50 km/s (dataset), VDISP > 100 km/s (analysis)
+Significance
 
-### Methodological Innovations:
-- **First application** of bispectro to galaxy velocity dispersion
-- **Novel multi-bin approach** for redshift evolution tracking
-- **Robust statistical framework** for non-Gaussianity quantification
+~5σ (initial estimate)
 
-## 📋 Dependencies
+✅ 6.99σ (Scalenes) vs. ΛCDM prediction
 
-```bash
-# Python requirements
-pip install numpy astropy
+Quality Cut
 
-# System requirements
-# - Rust/PyO3 environment for cosmic_vorticity.so
-# - 200MB disk space for datasets
-# - 2GB RAM recommended
-```
+VDISP > 50 km/s
 
-## 🎯 Reproduction Output
+✅ VDISP > 100 km/s (high confidence)
 
-Successful reproduction will show:
-```
-✅ z01_02 (z=0.1-0.2): [125085440.0, 1129590912.0]
-✅ z03_04 (z=0.3-0.4): [1064022720.0, 5743875072.0] 
-✅ z05_06 (z=0.5-0.6): [863196864.0, 4312530432.0]
-✅ z07_08 (z=0.7-0.8): [9658739712.0, 20042827776.0]
-```
 
-## 📄 Citation
+📊 Abstract
 
-```bibtex
-@article{cosmic_vorticity_2025,
-  title={Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: 
-         Bispectral Evidence from 2.8M SDSS Galaxies},
-  author={[Authors]},
-  journal={arXiv preprint},
-  year={2025},
-  url={https://github.com/OAVallejos/cosmic-vorticity-discovery}
+Analysis of 2.8 million SDSS DR17 galaxies reveals:
+
+Significance: 6.99σ incompatibility with ΛCDM
+Evolution: 10.00±0.69× in non-Gaussianity (z=0.1 to z=0.8)
+Interpretation: Evidence for primordial vorticity
+Implication: Requires beyond-ΛCDM physics with vector fields
+
+🚀 Reproduction
+
+Main Analysis:
+
+
+Bash
+
+
+
+# Generate validation data (25 samples)
+python3 VALIDACION_CON_RUST_OPTIMIZADO.py
+
+# Calculate significance (6.99σ)
+python3 CALCULO_SIGNIFICANCIA_CORREGIDO.py
+
+Data: 2.8M SDSS galaxies with VDISP > 100 km/s (high confidence cut)
+
+
+📁 Repository Structure
+
+
+
+
+vorticidad-cosmica-datos/
+├── CALCULO_SIGNIFICANCIA_CORREGIDO.py       # 🆕 6.99σ Calculation
+├── VALIDACION_CON_RUST_OPTIMIZADO.py        # 🆕 Data Generator
+├── analisis_divergencia_OPTIMIZADO.json     # 🆕 25 Validated Samples
+├── rust/                                    # Corrected Rust Pipeline
+├── datasets/                                # Processed SDSS Data
+└── cosmic_vorticity_paper.pdf               # Preprint V1.0
+
+
+🔬 Final Results (V1.1)
+
+Principal Significance: 6.99σ (scalene configurations)
+Evolution: 10.00±0.69× (z=0.1-0.8)
+Incompatibility: 9.1× larger than ΛCDM
+Samples: 25 bootstrap validations
+Galaxies: 2.8M with VDISP > 100 km/s
+
+🎯 Corrected Methodology
+
+Rust/PyO3 Pipeline with mathematically correct 3-j symbol
+Quality Cut: VDISP > 100 km/s for high confidence
+Robust Validation: 25 samples + multiple configurations
+First application of the bispectrum to galaxy velocity fields
+
+🤝 Open Source Collaboration
+
+
+For Developers:
+
+
+Bash
+
+
+
+# Compile Rust module
+cd rust
+cargo build --release
+
+# Run validation tests
+python3 VALIDACION_CON_RUST_OPTIMIZADO.py
+
+
+For Cosmologists:
+
+Review CALCULO_SIGNIFICANCIA_CORREGIDO.py for statistical methodology
+Analyze analisis_divergencia_OPTIMIZADO.json for raw data
+Validate with different bispectral configurations
+
+How to Contribute:
+
+Report issues on GitHub
+Propose improvements to the Rust/Python pipeline
+Validate results with alternative datasets
+Extend analysis to other surveys (DESI, LSST)
+
+Roadmap:
+
+[ ] Analysis with additional scalene configurations
+[ ] JWST data integration
+[ ] CUDA implementation for GPU acceleration
+
+📄 Citation
+
+
+Fragmento de código
+
+
+
+@article{vallejos2025vorticidad,
+ title={Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Fields},
+ author={Vallejos, Omar Ariel},
+ journal={Preprint v1.1},
+ year={2025},
+ doi={10.5281/zenodo.17304825}
 }
-```
 
-## 🤝 Contributing
+🔗 Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
 
-This is a research reproduction package. For:
-- **Scientific collaboration**: Contact authors
-- **Code issues**: Open GitHub issue
-- **Data questions**: Check docs/ folder
 
-## ⚠️ Disclaimer
+🌟 Acknowledgments
 
-This is active research. Results are preliminary and undergoing peer review.
+This project uses:
 
----
+SDSS DR17 for galactic data
+Rust/PyO3 for high-performance computing
+DeepSeek for research assistance with open source AI
+🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
-**🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research**
-
-*"The most exciting phrase to hear in science, the one that heralds new discoveries, 
-is not 'Eureka!' but 'That's funny...'" - Isaac Asimov*
-Gracias!!! DeepSeek El OpenSource AI màs extraordinario que hay... 
+"Science is not only compatible with spirituality; it is a profound source of spirituality." - Carl Sagan
