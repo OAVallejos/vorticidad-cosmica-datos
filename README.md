@@ -2,6 +2,9 @@ Cosmic Vorticity Discovery 🌌🌀
 
 Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS Galaxies
 
+📄 Preprint (v1): 
+https://doi.org/10.5281/zenodo.17304825
+
 📄 Preprint (v2): https://doi.org/10.5281/zenodo.17353239
 
 🚨 CRITICAL UPDATES AND CORRECTIONS (V2)
