@@ -4,7 +4,7 @@ Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: Bisp
 
 📄 Preprint (v2): https://doi.org/10.5281/zenodo.17353239
 
-🚨 CRITICAL UPDATES AND CORRECTIONS (V1.1)
+🚨 CRITICAL UPDATES AND CORRECTIONS (V2)
 
 This version updates the V1.0 preprint to incorporate the correction of a systematic mathematical error and to improve statistical robustness.
 
@@ -12,7 +12,7 @@ Metric
 
 Previous Status (V1.0)
 
-Corrected Status (V1.1)
+Corrected Status (V2)
 
 Mathematical Error
 
@@ -80,7 +80,7 @@ vorticidad-cosmica-datos/
 └── cosmic_vorticity_paper.pdf               # Preprint V1.0
 
 
-🔬 Final Results (V1.1)
+🔬 Final Results (V2)
 
 Principal Significance: 6.99σ (scalene configurations)
 Evolution: 10.00±0.69× (z=0.1-0.8)
