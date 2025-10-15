@@ -1,0 +1,7 @@
+{                           "significancia_principal": 6.99,
+  "evolucion_principal": 10.0,                        "error_principal": 0.689,
+  "p_value": "2.69e-12",
+  "muestras": 25,
+  "interpretacion": "Incompatibilidad con \u039bCDM a 6.99\u03c3",
+  "metodo": "Test t de Student corregido con bootstrap (n=25)"
+}
