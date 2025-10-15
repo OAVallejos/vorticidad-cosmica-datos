@@ -118,7 +118,7 @@ python3 VALIDACION_CON_RUST_OPTIMIZADO.py
 
 For Cosmologists:
 
-Review CALCULO_SIGNIFICANCIA_CORREGIDO.py for statistical methodology
+Review CALCULO_SIGNIFICANCIA_CORREGIDO_V2.py for statistical methodology
 Analyze analisis_divergencia_OPTIMIZADO.json for raw data
 Validate with different bispectral configurations
 
