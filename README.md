@@ -145,9 +145,9 @@ Fragmento de código
 @article{vallejos2025vorticidad,
  title={Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Fields},
  author={Vallejos, Omar Ariel},
- journal={Preprint v1.1},
+ journal={Preprint v2},
  year={2025},
- doi={10.5281/zenodo.17304825}
+ doi={10.5281/zenodo.17353239}
 }
 
 🔗 Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
