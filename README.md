@@ -114,6 +114,8 @@ cargo build --release
 
 # Run validation tests
 python3 VALIDACION_CON_RUST_OPTIMIZADO.py
+
+
 SIGNAL REFINEMENT AND V++ VALIDATION: THREE PILLARS REINFORCING THE BEYOND-ΛCDM EVIDENCE.
 
 Subsequent analysis refines the initial global estimate of 10.00x (V++) into a physically localized and robust result: the evolution of the bispectrum in scalar modes is 2.70 plus/minus 0.12x, and it is confined "exclusively to high-mass galaxies."
@@ -147,14 +149,10 @@ Conclusion: The result is robust against contamination and low-quality data. Vor
 
 The Methodological Robustness (Complementary Analysis).
 
-Your assertion is correct: the implemented methods manage and control these systematics, making the verification of raw galaxy counts redundant due to this multihypothesis approach:
+The implemented methods manage and control these systematics, making the verification of raw galaxy counts redundant due to this multihypothesis approach:
 
 Subsampling Techniques (Bootstrap / Jackknife): The calculation of the Standard Error of the Mean (0.12x) already quantifies the impact of statistical variability, which is higher in the high-redshift bin (z approximately 0.8) due to the smaller number of galaxies.
 Refuting Selection Bias (Malmquist): The most powerful test against redshift-related biases is mass localization (Pillar 2). The fact that the 2.70x signal is confined to the high mass and is null in the rest nullifies the general selection bias, regardless of the variation in galaxy counts at different distances.
-
-
-
-Certainly! Here is the text in English, ready to copy and paste, explaining the significance of the scalar bispectrum discovery within the SDSS data, free of special formatting symbols:
 
 
 The Scalar Bispectrum in SDSS: A Beyond-LCDM Discovery.
