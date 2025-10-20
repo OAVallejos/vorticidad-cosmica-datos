@@ -1,21 +1,54 @@
 Cosmic Vorticity Discovery 🌌🌀
 
-Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Dispersion: Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS Galaxies
+Strong Redshift Evolution of Non-Gaussian Vorticity in Galaxy Velocity Fields: Bispectral Evidence for Beyond-$\Lambda$CDM Physics from 2.8M SDSS and DESI Galaxies
 
-📄 Preprint (v1): 
-https://doi.org/10.5281/zenodo.17304825
 
-📄 Preprint (v2): https://doi.org/10.5281/zenodo.17353239
+📄 Preprints
 
-🚨 CRITICAL UPDATES AND CORRECTIONS (V2)
+Versión
 
-This version updates the V1.0 preprint to incorporate the correction of a systematic mathematical error and to improve statistical robustness.
+State
+
+DOI
+
+Main Changes
+
+V1.0
+
+Initial Release
+
+10.5281/zenodo.17304825
+
+Initial analysis, $\sim 5\sigma$ significance
+
+V2.0
+
+Critical Correction
+
+10.5281/zenodo.17353239
+
+Mathematical error correction, $6.99\sigma$ significance
+
+V3.0
+
+Current Version
+
+10.5281/zenodo.17401981
+
+
+DESI + SDSS Analysis, $8.08\sigma$ maximum
+
+
+🚨 CRITICAL UPDATES ACROSS VERSIONS
+
+
+V1.0 → V2.0 Transition: Mathematical Correction
 
 Metric
 
-Previous Status (V1.0)
+V1.0 State
 
-Corrected Status (V2)
+Corrected V2.0 State
 
 Mathematical Error
 
@@ -23,7 +56,7 @@ Incorrect 3-j symbol implementation
 
 ✅ Corrected: Precise Wigner implementation
 
-Robustness Sampling
+Robustness Samples
 
 5 bootstrap samples
 
@@ -31,9 +64,9 @@ Robustness Sampling
 
 Significance
 
-~5σ (initial estimate)
+$\sim 5\sigma$ (initial estimate)
 
-✅ 6.99σ (Scalenes) vs. ΛCDM prediction
+✅ $6.99\sigma$ (Scalene configurations)
 
 Quality Cut
 
@@ -42,171 +75,213 @@ VDISP > 50 km/s
 ✅ VDISP > 100 km/s (high confidence)
 
 
+V2.0 → V3.0 Transition: Multi-Survey Validation
+
+Metric
+
+SDSS Only
+
+SDSS + DESI
+
+Maximum Significance
+
+$6.99\sigma$
+
+$8.08\sigma$ (DESI Mass Test)
+
+Cross-Validation
+
+-
+
+$6.25\sigma$ independent confirmation
+
+Galaxies Analyzed
+
+2.8M
+
+5.1M total
+
+Mass Threshold
+
+SDSS Confirmed
+
+Multi-experiment Confirmed
+
+
 📊 Abstract
 
-Analysis of 2.8 million SDSS DR17 galaxies reveals:
+Problem: The $\Lambda$CDM model predicts smooth structure evolution from Gaussian initial conditions.
 
-Significance: 6.99σ incompatibility with ΛCDM
-Evolution: 10.00±0.69× in non-Gaussianity (z=0.1 to z=0.8)
-Interpretation: Evidence for primordial vorticity
-Implication: Requires beyond-ΛCDM physics with vector fields
+Method: Bispectral analysis of velocity dispersion (VDISP) in 2.8M SDSS DR17 galaxies and 2.3M DESI LRG galaxies using a corrected open-source Rust/Python pipeline.
 
-🚀 Reproduction
+Finding: The analysis reveals a non-Gaussian signal incompatible with $\Lambda$CDM at $8.08\sigma$ (Max DESI Mass Test) and $6.99\sigma$ (SDSS Scalene), characterized by a $10.00\pm0.69\times$ increase in non-Gaussianity between $z\sim 0.1$ and $z\sim 0.8$ with a clear mass threshold at $M_{c}\approx 3\times 10^{13} M_{\odot}$.
 
-Main Analysis:
+Interpretation: This dramatic evolution is the signature of primordial vorticity in the early cosmic plasma.
 
-
-Bash
+Implication: Requires the extension of $\Lambda$CDM with primordial vector fields and establishes three new fundamental parameters beyond the standard model.
 
 
-
-# Generate validation data (25 samples)
-python3 VALIDACION_CON_RUST_OPTIMIZADO.py
-
-# Calculate significance (6.99σ)
-python3 CALCULO_SIGNIFICANCIA_CORREGIDO.py
-
-Data: 2.8M SDSS galaxies with VDISP > 100 km/s (high confidence cut)
+🎯 Main Results V3.0
 
 
-📁 Repository Structure
+Statistical Significance
+
+8.08σ - Maximum incompatibility with ΛCDM (DESI mass-selected)
+
+6.99σ - SDSS Scalene configurations
+
+6.25σ - DESI independent confirmation
+
+
+Non-Gaussianity Evolution
+
+
+Python
 
 
 
-
-vorticidad-cosmica-datos/
-├── CALCULO_SIGNIFICANCIA_CORREGIDO.py       # 🆕 6.99σ Calculation
-├── VALIDACION_CON_RUST_OPTIMIZADO.py        # 🆕 Data Generator
-├── analisis_divergencia_OPTIMIZADO.json     # 🆕 25 Validated Samples
-├── rust/                                    # Corrected Rust Pipeline
-├── datasets/                                # Processed SDSS Data
-└── cosmic_vorticity_paper.pdf               # Preprint V1.0
+Redshift      Evolution (Factor×)
+0.1-0.2       1.00× (Reference)
+0.3-0.4       2.20 ± 0.40×
+0.5-0.6       4.90 ± 0.55×  
+0.7-0.8      10.00 ± 0.69×  # 🚨 Primordial signature
 
 
-🔬 Final Results (V2)
+Critical Mass Threshold
 
-Principal Significance: 6.99σ (scalene configurations)
-Evolution: 10.00±0.69× (z=0.1-0.8)
-Incompatibility: 9.1× larger than ΛCDM
-Samples: 25 bootstrap validations
-Galaxies: 2.8M with VDISP > 100 km/s
+Mc​≈3×1013M⊙​ - Vortical phase transition
 
-🎯 Corrected Methodology
+Exclusive evolution in high-mass systems
 
-Rust/PyO3 Pipeline with mathematically correct 3-j symbol
+SDSS-DESI cross-validation: 2.34× vs 2.37× (1.3% difference)
+
+
+🔬 Summary of the Audacious Proposal and JWST Observational Tests
+
+The paper proposes a fundamental revision to the Standard Cosmological Model ($\Lambda$CDM) by postulating the existence of non-Gaussian primordial vorticity in the initial conditions of the Universe.
+
+
+The JWST as a Crucial Verifier
+
+
+1. Test of Early Massive Galaxy Formation
+
+Prediction: Primordial vorticity reduces massive halo formation time by ∼30%
+
+JWST Test: Abundance of massive galaxies at z>10 vs ΛCDM predictions
+
+Expected Result: Significantly higher number of massive galaxies at extreme redshifts
+
+
+2. Test of the Critical Mass Threshold ($M_c$)
+
+Prediction: Vorticity effect as a "phase change" only above Mc​
+
+Test JWST: Intrinsic properties (age, stellar formation) in proto-clusters
+
+Expected Result: Abrupt jump in properties near the Mc​ threshold
+
+
+3. Test of the Tully-Fisher-Vorticity Relation
+
+Prediction: Modification of the mass-velocity relation for massive galaxies
+
+Test JWST: Rotation curves with JWST/NIRSpec (z∼1−4)
+
+Expected Result: +16% velocity excess, slope P≈3.4 (vs standard 4.0)
+
+
+Generate V3 validation data (40 samples)
+
+
+Calculate significance (6.99σ)
+
+Data: 2.8M SDSS galaxies + 2.3M DESI galaxies with VDISP > 100 km/s (high confidence cut)
+
+
+🛠️ Corrected Methodology (V2.0+)
+
+Rust/PyO3 Pipeline with mathematically correct implementation of the 3-j symbol
+
 Quality Cut: VDISP > 100 km/s for high confidence
-Robust Validation: 25 samples + multiple configurations
-First application of the bispectrum to galaxy velocity fields
+
+Robust Validation: 40 samples + multiple configurations
+
+First application of the bispectrum to galactic velocity fields
+
+
+🔗 Three Pillars of Beyond-$\Lambda$CDM Evidence
+
+
+1. Cosmological Challenge Pillar
+
+Incompatibility with ΛCDM: 7σ significance
+
+Refined result: 2.70±0.12× in scalar modes
+
+Implication: Beyond-ΛCDM Physics confirmed
+
+
+2. Localization Pillar
+
+Refutation of Malmquist Bias: Signal confined to high mass
+
+Null evolution (∼1.07×) in 2/3 of the low/medium mass population
+
+Conclusion: Localized physical phenomenon, not an artifact
+
+
+3. Signal Purity Pillar
+
+VDISP Quality Control: Stable signal with strict 150 km/s cut
+
+Consistent significance >6.4σ with improved cut
+
+Conclusion: Vorticity as an intrinsic property of massive systems
+
+# V3 
+
+Sample 40
+All test0 1.1x
+
 
 🤝 Open Source Collaboration
 
 
-For Developers:
-
-
-Bash
-
-
+For Developers
 
 # Compile Rust module
 cd rust
 cargo build --release
 
-# Run validation tests
-python3 VALIDACION_CON_RUST_OPTIMIZADO.py
 
+For Cosmologists
 
-SIGNAL REFINEMENT AND V++ VALIDATION: THREE PILLARS REINFORCING THE BEYOND-ΛCDM EVIDENCE.
+# method test.
+●ANALISIS_SENSIBILIDAD_VDISP.py
 
-Subsequent analysis refines the initial global estimate of 10.00x (V++) into a physically localized and robust result: the evolution of the bispectrum in scalar modes is 2.70 plus/minus 0.12x, and it is confined "exclusively to high-mass galaxies."
+# SDSS Robust Test.
+●ANALISIS_ROBUSTEZ_MASA_FINAL.py
+●VALIDACION_CON_RUST_OPTIMIZADO.py (important)
+●ANÁLISIS_ROBUSTEZ_EXTENDIDO.py (important)
 
-The discovery rests on unassailable significance, validated by a complementary hypothesis approach (multihypothesis testing) using three pillars of evidence that add robustness by ruling out critical systematics:
+# DESI
+● ROBUSTEZ_MASA_DESI.py
+● VALIDACION_DESI_RUST_LRG.py
 
-1. Cosmological Challenge Pillar: Incompatibility with LCDM (7 sigma Significance).
-
-This test establishes the cosmological context, demonstrating that the improved signal remains Beyond-LCDM.
-
-Concept: The signal is tested against the conservative upper limit hypothesis of LCDM (H sub 0 = 1.1x), which incorporates the most generous evolution the standard model could allow.
-Strength: The refined result of 2.70x is incompatible with this limit at 6.99 sigma.
-Implication: The test validates the conclusion of Beyond-LCDM physics, as the observed amplitude consistently exceeds the standard cosmological framework, confirming the principal conclusion of the work.
-Additional Note: The evolution is an empirical fact at greater than 14 sigma against the Pure Null Evolution Hypothesis** (H sub 0 = 1.0x).
-
-2. Localization Pillar: Refuting the Malmquist Bias.
-
-This test rules out the hypothesis of a selection artifact, strengthening the conclusion that the signal arises from mass physics.
-
-Concept: Stellar Velocity Dispersion (VDISP) is used as a mass proxy to divide the sample into thirds. This test adds soundness by refuting the hypothesis that the effect is a general selection bias (Malmquist), which would affect the entire population.
-Strength: The evolution signal is null or minimal (approximately 1.07x) in the 2/3 of the low and medium-mass population.
-Conclusion: The 2.70x evolution is exclusive to the high-mass subgroup (VDISP greater than 248 km/s). The signal is, therefore, a localized physical phenomenon and not a bias artifact.
-
-3. Signal Purity Pillar: VDISP Quality Control.
-
-This test rules out the hypothesis of low-quality data contamination, ensuring the internal robustness of the measurement.
-
-Concept: The robustness of the signal was verified by raising the minimum quality cut for VDISP data from the initial threshold (100 km/s) to a stricter level (150 km/s).
-Strength: The evolution remains stable (approximately 2.75x) and the significance consistently stays above 6.4 sigma with the stricter cut.
-Conclusion: The result is robust against contamination and low-quality data. Vorticity is an intrinsic and pure property of massive systems.
-
-The Methodological Robustness (Complementary Analysis).
-
-The implemented methods manage and control these systematics, making the verification of raw galaxy counts redundant due to this multihypothesis approach:
-
-Subsampling Techniques (Bootstrap / Jackknife): The calculation of the Standard Error of the Mean (0.12x) already quantifies the impact of statistical variability, which is higher in the high-redshift bin (z approximately 0.8) due to the smaller number of galaxies.
-Refuting Selection Bias (Malmquist): The most powerful test against redshift-related biases is mass localization (Pillar 2). The fact that the 2.70x signal is confined to the high mass and is null in the rest nullifies the general selection bias, regardless of the variation in galaxy counts at different distances.
-
-
-The Scalar Bispectrum in SDSS: A Beyond-LCDM Discovery.
-
-The use of the scalar bispectrum (and its evolution) is an advanced and crucial methodological strategy applied to the SDSS (Sloan Digital Sky Survey) data to search for physics beyond the Standard Cosmological Model (LCDM).
-
-This analysis is significant for three main reasons:
-
-## 1. The Bispectrum: Beyond Standard Statistics
-
-The bispectrum is the three-point correlation function of the galaxy distribution in the universe, whereas most traditional cosmological analyses (like Baryon Acoustic Oscillations, BAO) rely on the two-point function (the power spectrum).
-
-Why it is Key: The bispectrum measures non-Gaussianities and the non-linearity in the matter distribution. By measuring a significant scalar bispectrum, one is capturing the complexity of how gravity and other effects have clustered matter.
-SDSS Context: SDSS and later surveys provide the large data volumes necessary to measure the bispectrum with the required precision, enabling this high-order analysis.
-
-
-## 2. The Discovery: Beyond-LCDM Evolution
-
-The central finding is that the evolution (change over time/distance) of this scalar bispectrum property exceeds what the LCDM model can conservatively explain.
-
-Evolution: The measurement of 2.70 plus/minus 0.12x indicates that the observed property is approximately 2.7 times stronger than what the most generous LCDM model would allow (1.1x).
-New Physics Implication: This strong deviation (with a significance of approximately 7 sigma) suggests that cosmology requires additional physical components (Beyond-LCDM physics). Crucially, this evolution is interpreted as a Vorticity signature or a rotational movement in cosmic structure, which is not incorporated into the standard model.
-
-## 3. Methodological Robustness: Localization by Mass
-
-The use of the scalar bispectrum becomes a robust discovery thanks to the methodology implemented in SDSS that localizes it by mass:
-
-Key Filter: The effect is exclusively confined to high-mass galaxies (as measured by VDISP), while it is null or minimal in low- and medium-mass galaxies.
-Validation: This localization is the definitive test against a selection bias artifact (like the Malmquist Bias), which would affect all masses. Since the effect intrinsically depends on mass, it confirms that it is a real physical phenomenon and not an error in galaxy sampling.
-
-In summary, the scalar bispectrum analysis in SDSS not only utilizes a more complex correlation tool but has revealed a structural evolution phenomenon (2.70x) that is Beyond-LCDM and is physically anchored to the most massive galaxies.
-
-ANALISIS_ROBUSTEZ_MASA_FINAL.py
-ANALISIS_SENSIBILIDAD_VDISP.py
-analisis_robustez_masa_vd.json
-
-For Cosmologists:
-
-Review CALCULO_SIGNIFICANCIA_CORREGIDO_V2.py for statistical methodology
-Analyze analisis_divergencia_OPTIMIZADO.json for raw data
 Validate with different bispectral configurations
 
-How to Contribute:
 
-Report issues on GitHub
-Propose improvements to the Rust/Python pipeline
-Validate results with alternative datasets
-Extend analysis to other surveys (DESI, LSST)
-
-Roadmap:
+🗓️ Roadmap
 
 [ ] Analysis with additional scalene configurations
+
 [ ] JWST data integration
+
 [ ] CUDA implementation for GPU acceleration
+
+[ ] Analysis of early LSST data
+
 
 📄 Citation
 
@@ -216,23 +291,28 @@ Fragmento de código
 
 
 @article{vallejos2025vorticidad,
- title={Strong Redshift Evolution of Non-Gaussianity in Galaxy Velocity Fields},
- author={Vallejos, Omar Ariel},
- journal={Preprint v2},
- year={2025},
- doi={10.5281/zenodo.17353239}
+  title={Strong Redshift Evolution of Non-Gaussian Vorticity in Galaxy Velocity Fields: 
+         Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS and DESI Galaxies},
+  author={Vallejos, Omar Ariel},
+  journal={Preprint V3},
+  year={2025},
+  doi={10.5281/zenodo.17353239}
 }
 
-🔗 Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
+Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
 
 
-🌟 Acknowledgments
+🌟 Acknowledgements
 
 This project uses:
 
-SDSS DR17 for galactic data
+SDSS DR17 and DESI LRG for galactic data
+
 Rust/PyO3 for high-performance computing
-DeepSeek for research assistance with open source AI and Gemini (Google AI) for research and code assistance, including optimization of the Rust/Python pipeline.
+
+DeepSeek for open-source AI research assistance
+
+Gemini (Google AI) for research and code assistance
 
 🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
