@@ -241,7 +241,7 @@ Conclusion: Vorticity as an intrinsic property of massive systems
 
 # V3 
 
-Sample 40
+40 Sample
 All test0 1.1x
 
 
@@ -260,13 +260,20 @@ For Cosmologists
 # method test.
 ●ANALISIS_SENSIBILIDAD_VDISP.py
 
+
 # SDSS Robust Test.
+
 ●ANALISIS_ROBUSTEZ_MASA_FINAL.py
+
 ●VALIDACION_CON_RUST_OPTIMIZADO.py (important)
+
 ●ANÁLISIS_ROBUSTEZ_EXTENDIDO.py (important)
 
+
 # DESI
+
 ● ROBUSTEZ_MASA_DESI.py
+
 ● VALIDACION_DESI_RUST_LRG.py
 
 Validate with different bispectral configurations
