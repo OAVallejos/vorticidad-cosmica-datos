@@ -18,6 +18,7 @@ V1.0
 Initial Release
 
 10.5281/zenodo.17304825
+(https://zenodo.org/records/17304825)
 
 Initial analysis, $\sim 5\sigma$ significance
 
@@ -26,6 +27,7 @@ V2.0
 Critical Correction
 
 10.5281/zenodo.17353239
+(https://zenodo.org/records/17353239)
 
 Mathematical error correction, $6.99\sigma$ significance
 
@@ -34,7 +36,7 @@ V3.0
 Current Version
 
 10.5281/zenodo.17401981
-
+(https://zenodo.org/records/17401981)
 
 DESI + SDSS Analysis, $8.08\sigma$ maximum
 
