@@ -239,12 +239,7 @@ VDISP Quality Control: Stable signal with strict 150 km/s cut
 
 Consistent significance >6.4σ with improved cut
 
-Conclusion: Vorticity as an intrinsic property of massive systems
-
-# V3 
-
-40 Sample
-All test0 1.1x
+Conclusion: Vorticity as an intrinsic property of massive systems.
 
 
 🤝 Open Source Collaboration
