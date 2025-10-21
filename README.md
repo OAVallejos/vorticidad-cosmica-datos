@@ -305,7 +305,7 @@ Fragmento de código
   author={Vallejos, Omar Ariel},
   journal={Preprint V3},
   year={2025},
-  doi={10.5281/zenodo.17353239}
+  doi={10.5281/zenodo.17401981}
 }
 
 Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
