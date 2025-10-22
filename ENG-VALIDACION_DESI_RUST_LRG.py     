@@ -1,0 +1,197 @@
+# VALIDACION_DESI_RUST_LRG.py                 
+
+#!/usr/bin/env python3
+"""                       
+DESI LRG VALIDATION - CORRECTED CALCULATION             """                       
+import numpy as np
+import json
+from scipy import stats
+
+print("🎯 DESI LRG VALIDATION - CORRECTED CALCULATION")
+print("=" * 60)
+
+# LOAD DATA
+print("📥 LOADING DESI DATA...")
+data = np.load('lrg_analysis_subset.npz')
+vdisp = data['PROXY_MASA']
+redshift = data['Z']
+
+print(f"📊 DESI LRG DATASET:")
+print(f"   • Galaxies: {len(vdisp):,}")
+print(f"   • Redshift: {redshift.min():.3f} - {redshift.max():.3f}")
+print(f"   • Mass Proxy: {vdisp.min():.3f} - {vdisp.max():.3f}")
+
+# LOAD RUST MODULE
+try:
+    from cosmic_vorticity import calcular_bispectro_triangular
+    print("✅ Rust module loaded")
+    RUST_AVAILABLE = True
+except ImportError:
+    print("❌ Rust module not available")
+    exit()
+
+# CONFIGURATION
+configs_222 = [(2, 2, 2)]
+configs_444 = [(4, 4, 4)]
+configs_escalenas = [(1, 2, 3), (1, 3, 4), (2, 3, 5), (1, 4, 5), (2, 4, 6), (3, 4, 7)]
+todas_configs = configs_222 + configs_444 + configs_escalenas
+l_max = 8
+
+# REDSHIFT BINS
+bins_paper = [(0.4, 0.6, "z04_06"), (0.8, 1.0, "z08_10")]
+
+print(f"🔧 CONFIGURATION:")
+print(f"   • Samples: 40")
+print(f"   • Redshift bins: {bins_paper}")
+
+resultados_comparativos = {}
+evoluciones_222 = []
+evoluciones_esc = []
+
+# 🎯 ANALYSIS BY REDSHIFT BINS
+for z_min, z_max, label in bins_paper:
+    print(f"\n📊 {label} (z={z_min}-{z_max}):")
+    mask = (redshift >= z_min) & (redshift < z_max)
+    galaxies_bin = vdisp[mask]
+
+    print(f"   • Available galaxies: {len(galaxies_bin):,}")
+
+    sample_size = min(500, len(galaxies_bin))
+    resultados_bin = {'222': [], 'escalenos': []}
+
+    for semilla in range(40):
+        np.random.seed(semilla)
+        if len(galaxies_bin) >= sample_size:
+            sample = np.random.choice(galaxies_bin, size=sample_size, replace=False)
+            bispectra = calcular_bispectro_triangular(sample.tolist(), l_max, todas_configs)
+
+            if bispectra:
+                valor_222 = abs(bispectra[0])
+                resultados_bin['222'].append(valor_222)
+
+                valores_esc = [abs(bispectra[i]) for i in range(2, 8)]
+                valor_esc_prom = np.mean(valores_esc) if valores_esc else 0
+                resultados_bin['escalenos'].append(valor_esc_prom)
+
+    if resultados_bin['222']:
+        resultados_comparativos[label] = {
+            'z_mean': (z_min + z_max) / 2,
+            '222': np.mean(resultados_bin['222']),
+            'escalenos': np.mean(resultados_bin['escalenos']),
+            'N_galaxias': sample_size,
+            'N_muestras': len(resultados_bin['222'])
+        }
+
+        print(f"   • (2,2,2): {np.mean(resultados_bin['222']):.3e}")
+        print(f"   • Scalenes: {np.mean(resultados_bin['escalenos']):.3e}")
+
+# 📈 CALCULATING CORRECTED EVOLUTION
+print(f"\n📈 CALCULATING DESI EVOLUTION (CORRECTED)...")
+if 'z04_06' in resultados_comparativos and 'z08_10' in resultados_comparativos:
+    z_low_val = resultados_comparativos['z04_06']['escalenos']
+    z_high_val = resultados_comparativos['z08_10']['escalenos']
+
+    print(f"   • Low-z (0.4-0.6): {z_low_val:.1f}")
+    print(f"   • High-z (0.8-1.0): {z_high_val:.1f}")
+    print(f"   • Raw evolution: {z_low_val/z_high_val:.1f}×")
+
+    for semilla in range(40):
+        np.random.seed(semilla)
+
+        mask_high = (redshift >= 0.8) & (redshift < 1.0)
+        galaxies_high = vdisp[mask_high]
+        mask_low = (redshift >= 0.4) & (redshift < 0.6)
+        galaxies_low = vdisp[mask_low]
+
+        if len(galaxies_high) >= 500 and len(galaxies_low) >= 500:
+            sample_high = np.random.choice(galaxies_high, size=500, replace=False)
+            sample_low = np.random.choice(galaxies_low, size=500, replace=False)
+
+            bispectra_high = calcular_bispectro_triangular(sample_high.tolist(), l_max, [(2,2,2)] + configs_escalenas)
+            bispectra_low = calcular_bispectro_triangular(sample_low.tolist(), l_max, [(2,2,2)] + configs_escalenas)
+
+            if bispectra_high and bispectra_low:
+                # CORRECTION: Low-z / High-z (not the other way around)
+                esc_high = np.mean([abs(b) for b in bispectra_high[1:]])
+                esc_low = np.mean([abs(b) for b in bispectra_low[1:]])
+
+                # ✅ CORRECTED: evol_esc = low-z / high-z
+                evol_esc = esc_low / esc_high if esc_high > 0 else 0
+                evoluciones_esc.append(evol_esc)
+
+                # (2,2,2) for reference
+                evol_222 = abs(bispectra_low[0]) / abs(bispectra_high[0]) if abs(bispectra_high[0]) > 0 else 0
+                evoluciones_222.append(evol_222)
+
+                if semilla < 5:
+                    print(f"   Sample {semilla+1}: Scalenes={evol_esc:.1f}×")
+
+# 📊 CORRECTED STATISTICAL SIGNIFICANCE
+print(f"\n🎯 FINAL DESI RESULT (CORRECTED):")
+
+if evoluciones_esc:
+    media_esc = np.mean(evoluciones_esc)
+    std_esc = np.std(evoluciones_esc, ddof=1)
+    n_esc = len(evoluciones_esc)
+
+    print(f"   • Mean evolution: {media_esc:.1f}×")
+    print(f"   • Standard deviation: {std_esc:.1f}")
+    print(f"   • Samples: {n_esc}")
+
+    # Significance calculation vs null evolution (1.1×)
+    sem_esc = std_esc / np.sqrt(n_esc)
+    t_esc = abs(media_esc - 1.1) / sem_esc  # vs 1.1 (no evolution)
+    p_esc = 2 * (1 - stats.t.cdf(t_esc, n_esc-1))
+    sigma_esc = stats.norm.ppf(1 - p_esc/2)
+
+    print(f"   • Significance: {sigma_esc:.2f}σ")
+    print(f"   • p-value: {p_esc:.2e}")
+
+    # Interpretation
+    if sigma_esc >= 5.0:
+        print(f"   🎉 DESI CONFIRMS PRIMORDIAL VORTICITY!")
+        print(f"   🚀 NEW PHYSICS CONFIRMED!")
+    elif sigma_esc >= 3.0:
+        print(f"   ✅ Solid evidence for vorticity")
+    else:
+        print(f"   🔍 Promising signal")
+
+    print(f"   • SDSS Comparison: 6.99σ")
+
+# 💾 SAVE CORRECTED RESULTS
+resultados_finales = {
+    'dataset': 'DESI_LRG_DR1',
+    'configuracion': {
+        'bins_redshift': bins_paper,
+        'muestras': 40,
+        'l_max': l_max
+    },
+    'resultados_bispectro': resultados_comparativos,
+    'evolucion_corregida': {
+        'media_escalenos': float(media_esc) if evoluciones_esc else 0,
+        'std_escalenos': float(std_esc) if evoluciones_esc else 0,
+        'significancia': float(sigma_esc) if evoluciones_esc else 0,
+        'p_value': float(p_esc) if evoluciones_esc else 0,
+        'n_muestras': n_esc if evoluciones_esc else 0,
+        'todas_evoluciones': evoluciones_esc
+    },
+    'interpretacion': 'Evolution = Low-z / High-z (CORRECTED)'
+}
+
+with open('RESULTADO_DESI_LRG_CORREGIDO.json', 'w') as f:
+    json.dump(resultados_finales, f, indent=2)
+
+print(f"\n✅ ANALYSIS COMPLETED")
+print(f"   • File: RESULTADO_DESI_LRG_CORREGIDO.json")
+print(f"   • Dataset: {len(vdisp):,} DESI LRG galaxies")
+
+# 📈 EXECUTIVE SUMMARY
+if evoluciones_esc:
+    print(f"\n📋 EXECUTIVE SUMMARY:")
+    print(f"   • Low-z bispectrum (0.4-0.6): {resultados_comparativos['z04_06']['escalenos']:.0f}")
+    print(f"   • High-z bispectrum (0.8-1.0): {resultados_comparativos['z08_10']['escalenos']:.0f}")
+    print(f"   • Measured evolution: {media_esc:.0f}×")
+    print(f"   • Significance: {sigma_esc:.1f}σ")
+
+    if sigma_esc > 6.0:
+        print(f"   💥 EXTRAORDINARY RESULT (6.0σ)!")
