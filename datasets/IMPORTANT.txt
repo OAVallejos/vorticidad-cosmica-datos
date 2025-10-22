@@ -1,0 +1,5 @@
+Run FUSION.py to be able to use the two important subdatasets. You can do this by moving the two datasets to the root of the project. Or by redirecting the paths of both datasets in the .py files:
+
+● lrg_analysis_subset.npz (DESI LRG)
+
+● sdss_vdisp_calidad.npz
