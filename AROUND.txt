@@ -1,0 +1,53 @@
+●AWS lightsaid - LAMP
+2 GB RAM, 2 vCPU
+
+# Install environment  Miniconda
+
+>> nano ~/.bashrc 
+
+# Activate conda and default environment astro_kai 
+# source /home/bitnami/miniconda3/bin/activate
+conda activate astro_kai # It was activated with this name
+
+# Rust PATH
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+source "$HOME/.cargo/env"
+
+# Navigate to the working directory
+# cd ~/kai-platform
+cd ~/frontera_cosmica
+
+
+echo "🚀 Astro-KAI + Rust"
+
+# export PYTHONPATH="$HOME/kai-platform:$PYTHONPATH"
+export PYTHONPATH="$HOME/frontera_cosmica:$PYTHONPATH"
+
+>> source ~/bashrc
+
+# Install maturin first
+pip install maturin
+
+# Compile and install Python package
+cd rust/
+maturin develop --release
+
+# Verify installation
+python -c "import kai_rust; print('✅ Rust module imported successfully')"
+
+
+# Optimized build for release
+cargo build --release
+
+# Compiled file will be at:
+# target/release/libkai_rust.so
+
+
+# Install critical dependencies without cache (with all the libraries the same) 
+
+>> pip install --no-cache-dir --break-system-packages numpy
+>> pip install --no-cache-dir --break-system-packages astropy
+>> pip install --no-cache-dir --break-system-packages maturin
+
+# For memory-limited environments
+>> export PIP_NO_CACHE_DIR=1
