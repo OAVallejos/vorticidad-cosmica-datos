@@ -323,6 +323,19 @@ DeepSeek for open-source AI research assistance
 
 Gemini (Google AI) for research and code assistance
 
+PUBLIC DATASETS:
+• Core Sample (SDSS DR17): Based on an initial dataset of 2.88 million galaxies that provided coordinates (RA, DEC), spectroscopic Z, and the kinematic mass proxy V_disp (range 50-850 km/s), used for the most rigorous robustness tests.
+
+ • DESI Final Analysis and Validation Sample (LRG): The final analysis is performed on 2,288,571 galaxies. This set already incorporates the LRG cosmological filter (0.4 < Z < 1.0) and uses FIBERFLUX (labeled PROXY_MASS) for mass segmentation, and the WEIGHT_ZFAIL factor for bias correction.
+
+The Sloan Digital Sky Survey (SDSS).
+sdss_vdisp_calidad.npz
+https://www.sdss4.org/dr17/data_access/bulk/
+
+DESI
+lrg_analysis_subset.npz
+https://data.desi.lbl.gov/desi/public/dr1/vac/dr1/stellar-mass-emline/dr1_galaxy_stellarmass_lineinfo_v1.0.fits
+
 🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
 "Science is not only compatible with spirituality; it is a profound source of spirituality." - Carl Sagan
