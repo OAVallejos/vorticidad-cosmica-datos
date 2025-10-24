@@ -3,6 +3,11 @@ Cosmic Vorticity Discovery 🌌🌀
 Strong Redshift Evolution of Non-Gaussian Vorticity in Galaxy Velocity Fields: Bispectral Evidence for Beyond-$\Lambda$CDM Physics from 2.8M SDSS and DESI Galaxies
 
 
+Note: Please read AROUND.txt and within datasets/IMPORTANT.txt
+
+There are only 4 four important translated files, ENG-NAMEFILE.py, needed to obtain the results.
+
+
 📄 Preprints
 
 Versión
