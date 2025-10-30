@@ -1,7 +1,41 @@
 ●AWS lightsaid - LAMP
 2 GB RAM, 2 vCPU
+# BASH
 
-# Install environment  Miniconda
+>> sudo apt update
+>> sudo apt upgrade -y
+
+
+# Install RUST: rustup
+
+>> curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Option  (1)
+
+
+
+# Miniconda (64 bits Linux)
+
+>> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+
+
+# Ejecutar el script de instalación
+
+>> bash miniconda.sh -b -p $HOME/miniconda3
+
+
+# Init Conda (~/.bashrc)
+
+>> $HOME/miniconda3/bin/conda init
+
+>> source ~/.bashrc
+
+# Crear y activar tu entorno (usando el nombre de tu script)
+
+>> conda create -n astro_kai python=3.10 -y
+
+>> conda activate astro_kai
+
 
 >> nano ~/.bashrc 
 
