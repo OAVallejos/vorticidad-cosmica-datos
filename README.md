@@ -76,7 +76,7 @@ Validate with different bispectral configurations
 
 Fragmento de código
 
-@article{vallejos2025vorticidad, title={Strong Redshift Evolution of Non-Gaussian Vorticity in Galaxy Velocity Fields: Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS and DESI Galaxies}, author={Vallejos, Omar Ariel}, journal={Preprint V3}, year={2025}, doi={10.5281/zenodo.17660235} }
+@article{vallejos2025vorticidad, title={Strong Redshift Evolution of Non-Gaussian Vorticity in Galaxy Velocity Fields: Possible Bispectral Evidence for Beyond-ΛCDM Physics from 2.8M SDSS and DESI Galaxies}, author={Vallejos, Omar Ariel}, journal={Preprint V4.0}, year={2025}, doi={10.5281/zenodo.17660235} }
 
 Repository: https://github.com/OAVallejos/vorticidad-cosmica-datos
 
