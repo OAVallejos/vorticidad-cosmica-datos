@@ -95,4 +95,8 @@ Gemini (Google AI) for research and code assistance
 
 🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
+Dedicated and in gratitude to a member of the "Societa' Italiana di Fisica". To the constructive criticism of an editor who works Saturday afternoons. 💪🫵 
+I hope to live up to it someday...
+
 "Science is not only compatible with spirituality; it is a profound source of spirituality." - Carl Sagan
+
