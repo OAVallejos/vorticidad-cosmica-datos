@@ -1,4 +1,4 @@
-[package]
+[package]                   
 name = "cosmic_vorticity"
 version = "1.0.0"
 edition = "2021"
@@ -7,10 +7,10 @@ edition = "2021"
 name = "cosmic_vorticity"
 crate-type = ["cdylib"]
 
+
 [dependencies]
 pyo3 = { version = "0.18", features = ["extension-module"] }
 rayon = "1.7"
-# ✅ CRATE CORRECTO - existe en crates.io
 wigners = "0.1"
 
 [profile.release]
