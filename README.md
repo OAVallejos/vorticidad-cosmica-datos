@@ -30,6 +30,10 @@ v4.5
 10.5281/zenodo.17661137
 (https://zenodo.org/records/17661137)
 
+v4.6
+10.5281/zenodo.17703235
+(https://zenodo.org/records/17703235)
+
 
 Rust-PyO3 ENVIRONMENT TEST 
 
