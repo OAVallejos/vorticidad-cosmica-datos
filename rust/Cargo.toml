@@ -1,17 +1,16 @@
-[package]                   
+ [package]                   
 name = "cosmic_vorticity"
 version = "1.0.0"
 edition = "2021"
 
-[lib]
-name = "cosmic_vorticity"
-crate-type = ["cdylib"]
-
+[lib]                       
+name = "cosmic_vorticity"   crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.18", features = ["extension-module"] }
+pyo3 = { version = "0.20", features = ["extension-module"] }
+numpy = "0.20"
+wigners = "0.3" 
 rayon = "1.7"
-wigners = "0.1"
 
 [profile.release]
 lto = true
