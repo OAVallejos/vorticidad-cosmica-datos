@@ -82,6 +82,9 @@ cargo build --release
 >> pip install --no-cache-dir --break-system-packages numpy
 >> pip install --no-cache-dir --break-system-packages astropy
 >> pip install --no-cache-dir --break-system-packages maturin
+>> pip install numba --break-system-packages
+>> pip install arviz --break-system-packages
+
 
 # For memory-limited environments
 >> export PIP_NO_CACHE_DIR=1
