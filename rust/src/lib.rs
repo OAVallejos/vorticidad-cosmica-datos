@@ -1,7 +1,65 @@
-use pyo3::prelude::*;       
-use pyo3::wrap_pyfunction;
-use std::collections::HashMap;use std::f64::consts::PI;
+use pyo3::prelude::*;
+use numpy::{PyArray1, PyReadonlyArray1, IntoPyArray};
+use std::collections::HashMap;
+use std::f64::consts::PI;
 use wigners::wigner_3j;
+
+// =============================================================================
+// 0. ESTRUCTURA FINAL - MÓDULO PRINCIPAL  
+// =============================================================================
+
+#[pymodule]
+fn cosmic_vorticity(py: Python, m: &PyModule) -> PyResult<()> {
+
+    // ✅ ESTRUCTURAS COSMOLÓGICAS PARA MCMC
+    m.add_class::<CosmologicalParameters>()?;
+    m.add_class::<VectorFieldParameters>()?;
+    m.add_class::<CosmicVorticitySystem>()?;
+
+    // ✅ BISPECTRO Y MÉTODOS DE ANÁLISIS POR MORFOLOGÍA
+    m.add_function(wrap_pyfunction!(calcular_bispectro_angular_galaxias, m)?)?;
+    m.add_function(wrap_pyfunction!(calcular_bispectro_escaleno, m)?)?;
+    m.add_function(wrap_pyfunction!(calcular_bispectro_equilatero, m)?)?;
+    m.add_function(wrap_pyfunction!(calcular_bispectro_triangular, m)?)?;
+
+    m.add_function(wrap_pyfunction!(obtener_todas_configuraciones_triangulares, m)?)?;
+    m.add_function(wrap_pyfunction!(obtener_configuraciones_por_tipo, m)?)?;
+    m.add_function(wrap_pyfunction!(calcular_bispectro_por_tipo, m)?)?;
+    m.add_function(wrap_pyfunction!(analizar_morfologia_bispectro, m)?)?;
+
+    // ✅ FUNCIONES AUXILIARES (REGISTRO)
+    m.add_function(wrap_pyfunction!(estadisticas_no_gaussianas, m)?)?;
+    m.add_function(wrap_pyfunction!(generar_imagen_png, m)?)?;
+    m.add_function(wrap_pyfunction!(generar_reporte_html, m)?)?;
+    m.add_function(wrap_pyfunction!(exportar_datos_visualizacion, m)?)?;
+    m.add_function(wrap_pyfunction!(analizar_morfologia_galaxia, m)?)?;
+    m.add_function(wrap_pyfunction!(calcular_patrones_lineas, m)?)?;
+    m.add_function(wrap_pyfunction!(modelo_vorticidad_plasma, m)?)?;
+
+    // =============================================================================
+    // ✅ SUBMÓDULOS ESPECIALIZADOS 
+    // =============================================================================
+    
+    let bispectro_module = PyModule::new(py, "bispectro")?;
+    bispectro_module.add_function(wrap_pyfunction!(calcular_bispectro_angular_galaxias, m)?)?;
+    bispectro_module.add_function(wrap_pyfunction!(calcular_bispectro_escaleno, m)?)?;
+    bispectro_module.add_function(wrap_pyfunction!(calcular_bispectro_equilatero, m)?)?;
+    m.add_submodule(bispectro_module)?;
+
+    let morfologia_module = PyModule::new(py, "morfologia")?;
+    morfologia_module.add_function(wrap_pyfunction!(obtener_configuraciones_por_tipo, m)?)?;
+    morfologia_module.add_function(wrap_pyfunction!(calcular_bispectro_por_tipo, m)?)?;
+    morfologia_module.add_function(wrap_pyfunction!(analizar_morfologia_bispectro, m)?)?;
+    m.add_submodule(morfologia_module)?;
+
+    let utilidades_module = PyModule::new(py, "utilidades")?;
+    utilidades_module.add_function(wrap_pyfunction!(estadisticas_no_gaussianas, m)?)?;
+    utilidades_module.add_function(wrap_pyfunction!(generar_imagen_png, m)?)?;
+    utilidades_module.add_function(wrap_pyfunction!(exportar_datos_visualizacion, m)?)?;
+    m.add_submodule(utilidades_module)?;
+
+    Ok(())
+}
 
 // =============================================================================
 // 1. ESTRUCTURAS COSMOLÓGICAS (MCMC)
@@ -230,7 +288,6 @@ fn calcular_bispectro_equilatero(
     Ok(resultados)
 }
 
-
 // =============================================================================
 // 2.5. MORFOLOGÍA DE BISPECTRO (NUEVAS FUNCIONES)
 // =============================================================================
@@ -261,7 +318,7 @@ fn obtener_todas_configuraciones_triangulares() -> PyResult<Vec<(u16, u16, u16)>
 fn obtener_configuraciones_por_tipo(tipo: &str) -> PyResult<Vec<(u16, u16, u16)>> {
     let todas = obtener_configuraciones_triangulares_completas();
 
-    let filtradas: Vec<(u16, u16, u16)> = todas.into_iter()  // Cambio: into_iter() en lugar de iter()
+    let filtradas: Vec<(u16, u16, u16)> = todas.into_iter()
         .filter(|&(l1, l2, l3)| {
             if !condiciones_triangulo(l1, l2, l3) {
                 return false;
@@ -373,9 +430,6 @@ fn analizar_morfologia_bispectro(
 
 #[pymethods]
 impl CosmicVorticitySystem {
-    // ... (Métodos new, integrate_to_redshift, calculate_bispectrum_evolution, hubble_parameter, etc. - se mantienen igual)
-    // Se omiten por espacio, pero están incluidos en la versión completa.
-
     #[new]
     fn new(
         cosmo_params: CosmologicalParameters,
@@ -458,7 +512,7 @@ impl CosmicVorticitySystem {
                                data_obs_sdss: (f64, f64),
                                data_obs_desi: (f64, f64)) -> PyResult<f64> {
 
-        let a_omega = self.vector_params.alpha * 2.0;
+        let _a_omega = self.vector_params.alpha * 2.0;
 
         let log_beta = self.vector_params.beta.abs().log10();
         let n_omega = -0.4_f64 + 0.01 * (log_beta + 40.0);
@@ -497,7 +551,7 @@ impl CosmicVorticitySystem {
 
         const EXTREME_PENALTY: f64 = -1.0e30;
 
-        let a_omega = self.vector_params.alpha * 2.0;
+        let _a_omega = self.vector_params.alpha * 2.0;
 
         let log_beta = self.vector_params.beta.abs().log10();
         let n_omega = -0.4_f64 + 0.01 * (log_beta + 40.0);
@@ -550,7 +604,7 @@ impl CosmicVorticitySystem {
     }
 }
 
-// Implementaciones internas (hubble_parameter, coupled_system, rk4_step, etc. - se mantienen igual)
+// Implementaciones internas (hubble_parameter, coupled_system, rk4_step, etc.)
 impl CosmicVorticitySystem {
 
     fn hubble_parameter(&self, z: f64, state: &[f64]) -> f64 {
@@ -566,7 +620,7 @@ impl CosmicVorticitySystem {
         let a0 = state[0];
         let omega_a = self.calculate_omega_a(z, a0);
 
-        (h0 * (standard + omega_a).abs().sqrt())
+        h0 * (standard + omega_a).abs().sqrt()
     }
 
     fn coupled_system(&self, z: f64, state: &[f64]) -> Vec<f64> {
@@ -660,7 +714,7 @@ impl CosmicVorticitySystem {
 }
 
 // =============================================================================
-// 4. FUNCIONES AUXILIARES
+// 4. FUNCIONES AUXILIARES (SIN DUPLICADOS)
 // =============================================================================
 
 #[pyfunction]
@@ -706,10 +760,10 @@ fn estadisticas_no_gaussianas(datos: Vec<f32>) -> PyResult<Vec<f32>> {
     Ok(vec![media, varianza, asimetria, curtosis])
 }
 
-// Funciones de utilidad para visualización (se mantienen como placeholders funcionales)
+// Funciones de utilidad para visualización
 #[pyfunction]
 fn generar_imagen_png(
-    datos: Vec<f32>,
+    _datos: Vec<f32>,
     dimensiones: (u32, u32),
     nombre_archivo: String
 ) -> PyResult<()> {
@@ -726,9 +780,9 @@ fn generar_imagen_png(
 
 #[pyfunction]
 fn generar_reporte_html(
-    resultados: Vec<f32>,
-    mapa_intensidad: Vec<f32>,
-    dimensiones: (u32, u32),
+    _resultados: Vec<f32>,
+    _mapa_intensidad: Vec<f32>,
+    _dimensiones: (u32, u32),
     nombre_archivo: String
 ) -> PyResult<()> {
     use std::fs::File;
@@ -740,34 +794,26 @@ fn generar_reporte_html(
 
 #[pyfunction]
 fn exportar_datos_visualizacion(
-    mapa_intensidad: Vec<f32>,
-    mapa_ratio: Vec<f32>,
+    _mapa_intensidad: Vec<f32>,
+    _mapa_ratio: Vec<f32>,
     dimensiones: (u32, u32),
-    resultados: Vec<f32>
+    _resultados: Vec<f32>
 ) -> PyResult<String> {
     let json_data = format!(r#"{{
         "dimensiones": [{}, {}],
         "mapa_intensidad": "datos_redactados",
         "mapa_ratio": "datos_redactados",
-        "metricas_vorticidad": {:?},
-        "ratio_promedio": {:.3},
-        "conclusion": "{}"
+        "metricas_vorticidad": [],
+        "ratio_promedio": 0.0,
+        "conclusion": "SIN_EVIDENCIA_FUERTE"
     }}"#,
-        dimensiones.0, dimensiones.1,
-        resultados,
-        resultados.iter().sum::<f32>() / resultados.len() as f32,
-        if resultados.iter().any(|&x| x > 1.5) {
-            "POSIBLE_VORTICIDAD_DETECTADA"
-        } else {
-            "SIN_EVIDENCIA_FUERTE"
-        }
+        dimensiones.0, dimensiones.1
     );
 
     Ok(json_data)
 }
 
-fn calcular_patron_rotacional(_mapa: &[f32], dimensiones: (u32, u32)) -> f32 {
-    let (_ancho, _alto) = dimensiones;
+fn calcular_patron_rotacional(_mapa: &[f32], _dimensiones: (u32, u32)) -> f32 {
     0.1 // Placeholder
 }
 
@@ -780,7 +826,10 @@ fn analizar_morfologia_galaxia(
     let (ancho, alto) = dimensiones;
     let mut resultados = Vec::new();
 
-    let mut suma_total = mapa_intensidad.iter().map(|&x| if x > umbral_snr { x } else { 0.0 }).sum::<f32>();
+    // CORRECCIÓN: Definir suma_total que faltaba
+    let suma_total: f32 = mapa_intensidad.iter()
+        .map(|&x| if x > umbral_snr { x } else { 0.0 })
+        .sum();
 
     if suma_total > 0.0 {
         resultados.push(ancho as f32 / 2.0);
@@ -836,40 +885,4 @@ fn calcular_patrones_lineas(
     }
 
     Ok(resultados)
-}
-
-
-// =============================================================================
-// 5. REGISTRO DEL MÓDULO UNIFICADO
-// =============================================================================
-
-#[pymodule]
-fn cosmic_vorticity(_py: Python, m: &PyModule) -> PyResult<()> {
-
-    // ✅ ESTRUCTURAS COSMOLÓGICAS PARA MCMC
-    m.add_class::<CosmologicalParameters>()?;
-    m.add_class::<VectorFieldParameters>()?;
-    m.add_class::<CosmicVorticitySystem>()?;
-
-    // ✅ BISPECTRO Y MÉTODOS DE ANÁLISIS POR MORFOLOGÍA
-    m.add_function(wrap_pyfunction!(calcular_bispectro_angular_galaxias, m)?)?;
-    m.add_function(wrap_pyfunction!(calcular_bispectro_escaleno, m)?)?;
-    m.add_function(wrap_pyfunction!(calcular_bispectro_equilatero, m)?)?;
-    m.add_function(wrap_pyfunction!(calcular_bispectro_triangular, m)?)?; // Redirección
-
-    m.add_function(wrap_pyfunction!(obtener_todas_configuraciones_triangulares, m)?)?;
-    m.add_function(wrap_pyfunction!(obtener_configuraciones_por_tipo, m)?)?;
-    m.add_function(wrap_pyfunction!(calcular_bispectro_por_tipo, m)?)?;
-    m.add_function(wrap_pyfunction!(analizar_morfologia_bispectro, m)?)?;
-
-    // ✅ FUNCIONES AUXILIARES
-    m.add_function(wrap_pyfunction!(modelo_vorticidad_plasma, m)?)?;
-    m.add_function(wrap_pyfunction!(estadisticas_no_gaussianas, m)?)?;
-    m.add_function(wrap_pyfunction!(generar_imagen_png, m)?)?;
-    m.add_function(wrap_pyfunction!(generar_reporte_html, m)?)?;
-    m.add_function(wrap_pyfunction!(exportar_datos_visualizacion, m)?)?;
-    m.add_function(wrap_pyfunction!(analizar_morfologia_galaxia, m)?)?;
-    m.add_function(wrap_pyfunction!(calcular_patrones_lineas, m)?)?;
-
-    Ok(())
 }
