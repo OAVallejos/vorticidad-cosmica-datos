@@ -1,0 +1,19 @@
+[package]
+name = "cosmic_vorticity"     version = "1.0.0"
+edition = "2021"
+
+[lib]                         
+name = "cosmic_vorticity"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.20", features = ["extension-module"] }
+numpy = "0.20"
+wigners = "0.3"
+rayon = "1.7"
+once_cell = "1.19"
+lazy_static = "1.4"
+
+[profile.release]
+lto = true
+opt-level = 3
