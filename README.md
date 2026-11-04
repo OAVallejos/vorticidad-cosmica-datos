@@ -121,6 +121,41 @@ DeepSeek for open-source AI research assistance
 
 Gemini (Google AI) for research and code assistance
 
+# Appendix A:
+
+rust/Cargo_A.toml
+
+rust/pyptoject_A.toml
+
+rust/src/cosmic_vorticity_ac.rs
+
+
+
+SPEC.md
+
+EDA_VDISP.py
+
+nz_estimator_v3.py
+
+fkp_weights_v3.py
+
+pipeline_production_v4.py
+
+ACSyD_v20_healpix_fkp.py
+
+plot_v20_ac.py
+
+plot_evolucion_v20ac.py
+
+triangle_analysis_v20.py
+
+statistical_analysis_v20.py
+
+
+Vallejos, O. A. (2026). Pre-processing, FKP Correction and Robust Bispectrum Analysis (VPM). (Version Appendex A). Zenodo. https://doi.org/10.5281/zenodo.23945968
+
+
+
 
 🌌 Exploring Cosmic Frontiers • 📊 Reproducible Science • 🚀 Open Research
 
